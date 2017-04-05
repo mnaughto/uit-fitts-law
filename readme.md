@@ -1,13 +1,11 @@
-# Visualising Fitts' Law with D3
+# Fitts' Law Experiment
 
 Fitts' Law is one of the cornerstones of user interface research. Published in 1954, Fitts described the relation between the target distance, width, and time needed of a target acquisition task. This later became known as Fitts' law [Fitts 1954].
 
 This interactive illustration of the Fitts test should serve as an introduction to Fitts' law. It can also help the viewer to visualise details not directly covered by it and provide further insights into motion in 2D target acquisition tasks.
 
 # Contributors
-This project was originally created for the User Interface Technology course at the University of Copenhagen in 2012.
-
-Additional spell checking by Vicki Brown and Rich Morin in 2015.
+This project is forked from the original project repository solely for purposes of UI simplification. Credit for implementation goes to the original project authors. See the repository at https://github.com/SimonWallner/uit-fitts-law.
 
 # License
 This project is licensed under the MIT license; used libraries might have their own licenses.
