@@ -568,7 +568,7 @@ $('button').click(function(){
 		currentColumn = 0;
 		currentRow++;
 		
-		for(var j = 0; j < this.data[trial].length; j++){
+		for(var j = 0; j < fittsTest.data[trial].data.length; j++){
 			for(var k = 0; k < fields.length; k++){
 							var cellRef = xlsx.utils.encode_cell({
 								c: currentColumn,
@@ -577,7 +577,7 @@ $('button').click(function(){
 
 							var cell = {
 								t: 'n',
-								v: this.data[trial][j][k]
+								v: fittsTest.data[trial].data[j][fields[k]]
 							};
 
 							if (range.s.r > currentRow) {
