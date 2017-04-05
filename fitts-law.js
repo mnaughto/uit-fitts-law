@@ -43,27 +43,27 @@ function v(v) {
 var trials = [
 	{
 		w: 30,
-		a: 160
-	},
-	{
-		w: 30,
-		a: 230
+		a: 250
 	},
 	{
 		w: 30,
 		a: 300
 	},
 	{
-		w: 55,
-		a: 160
+		w: 30,
+		a: 350
 	},
 	{
 		w: 55,
-		a: 230
+		a: 250
 	},
 	{
 		w: 55,
 		a: 300
+	},
+	{
+		w: 55,
+		a: 350
 	},
 ];
 
@@ -122,7 +122,7 @@ var fittsTest = {
 		
 			this.active = false;
 			this.addDataSet();
-			$('#title').html('Trial ' + (this.dataCnt + 1));
+			$('#title').html('Trial ' + (this.dataCnt));
 			$('button').hide();
 			$('#test-area').show();
 		} else {
