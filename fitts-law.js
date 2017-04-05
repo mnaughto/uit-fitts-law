@@ -478,3 +478,148 @@ var testAreaSVG = d3.select('#test-area').append('svg')
 // should probably go somewhere else though. 
 
 fittsTest.startTrials();
+
+$('button').click(function(){
+	var Workbook = function () {
+						if (!(this instanceof Workbook)) {
+							return new xlsx.Workbook();
+						}
+						this.SheetNames = [];
+						this.Sheets = {};
+					};
+
+					var s2ab = function (s) {
+						var buf = new ArrayBuffer(s.length);
+						var view = new Uint8Array(buf);
+						var i;
+
+						for (i = 0; i != s.length; ++i) {
+							view[i] = s.charCodeAt(i) & 0xFF;
+						}
+
+						return buf;
+					};
+
+					var wb = new Workbook(),
+						ws = {},
+						currentColumn = 0,
+						currentRow = 0,
+						range = {
+							s: {
+								c: 10000000, r: 10000000
+							}, e: {
+								c: 0, r: 0
+							}
+						};
+	var columns = ['Time', 'Distance', 'Width', 'Hit X', 'Hit Y', 'Hit Time', 'Start X', 'Start Y', 'Start Time', 'Target X', 'Target Y'];
+	var fields = ['time',
+				'distance',
+				'width',
+				'hitX',
+				'hitY',
+				'hitT',
+				'startX',
+				'startY',
+				'startT',
+				'targetX',
+				'targetY'];
+	
+	for(var trial = 0; trial < trials.length; trial++){
+		ws = {};
+						currentColumn = 0;
+						currentRow = 0;
+						range = {
+							s: {
+								c: 10000000, r: 10000000
+							}, e: {
+								c: 0, r: 0
+							}
+						};
+	for(var i = 0; i < columns.length; i++){
+		var cellRef = xlsx.utils.encode_cell({
+							c: i,
+							r: currentRow
+						});
+						var cell = {
+							v: columns[i],
+							t: 's'
+						};
+
+						if (range.s.r > currentRow) {
+							range.s.r = currentRow;
+						}
+
+						if (range.s.c > i) {
+							range.s.c = i;
+						}
+
+						if (range.e.r < currentRow) {
+							range.e.r = currentRow;
+						}
+
+						if (range.e.c < i) {
+							range.e.c = i;
+						}
+
+						ws[cellRef] = cell;
+	}
+		
+		currentColumn = 0;
+		currentRow++;
+		
+		for(var j = 0; j < this.data[trial].length; j++){
+			for(var k = 0; k < fields.length; k++){
+				var cellRef = xlsx.utils.encode_cell({
+								c: currentColumn,
+								r: currentRow
+							});
+
+							var cell = {
+								t: 'n',
+								v: this.data[trial][j][k];
+							};
+
+							if (range.s.r > currentRow) {
+								range.s.r = currentRow;
+							}
+
+							if (range.s.c > currentColumn) {
+								range.s.c = currentColumn;
+							}
+
+							if (range.e.r < currentRow) {
+								range.e.r = currentRow;
+							}
+
+							if (range.e.c < currentColumn) {
+								range.e.c = currentColumn;
+							}
+
+							ws[cellRef] = cell;
+							currentColumn++;
+						});
+
+						currentRow++;
+						currentColumn = 0;
+			}
+		
+			if (range.s.c < 10000000) {
+						ws['!ref'] = xlsx.utils.encode_range(range);
+					}
+
+					/* add worksheet to workbook */
+					wb.SheetNames.push('Trial ' + (trial + 1));
+					wb.Sheets['Trial ' + (trial + 1)] = ws;
+		}
+	}
+		  
+		  var wbout = xlsx.write(wb, {
+						bookType: 'xlsx',
+						bookSST: true,
+						type: 'binary'
+					});
+
+					FileSaver.saveAs(new Blob([s2ab(wbout)], {
+						type: 'application/octet-stream'
+					}), 'ExperimentData.xlsx');
+});
