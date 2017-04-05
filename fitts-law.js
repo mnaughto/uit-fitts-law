@@ -291,9 +291,23 @@ var fittsTest = {
 		{
 			var dist = distance(data.target, data.start);
 			var id = shannon(dist, data.target.w);
+				
+			
+			var newPoint = {
+				time: dt,
+				distance: data.target.distance,
+				width: data.target.w,
+				hitX: data.hit.x,
+				hitY: data.hit.y,
+				hitT: data.hit.t,
+				startX: data.start.x,
+				startY: data.start.y,
+				startT: data.start.t,
+				targetX: data.target.x,
+				targetY: data.target.y
+			};
 
-			this.data[this.currentDataSet].data.push({time: dt, distance: data.target.distance, width: data.target.w, hit: data.hit,
-				start: data.start, target: data.target, path: data.path});
+			this.data[this.currentDataSet].data.push(newPoint);
 		}
 	},
 	
@@ -307,81 +321,7 @@ var fittsTest = {
 	},
 	
 	updatePlots: function(that) {
-					
-		/* we haven't moven inside the test area, so we can as well disable
-		 * the test for now
-		 */
-		that.active = false;
-
-		// for each data set
-		// compute We and IDe and Throughput for each category
-
-		// process data
-		var dataSetIndex = -1; // evil hack to make it start at 0 then.
-		for (var key in that.data) { // for each data set
-			
-			dataSetIndex++;
-			
-			var groups = [];
-			for (var i = 0; i < that.data[key].data.length; i++) { // for each datum
-				var datum = that.data[key].data[i];
-				var groupID = datum.distance.toString() + datum.width.toString();
-				if (!groups[groupID]) {
-					groups[groupID] = [];
-				}
-				
-				var q = project(datum.start, datum.target, datum.hit);
-				// var x = distance(q, datum.start) * sign(q.t);
-				var y = distance(q, datum.hit) * isLeft(datum.start, datum.target, datum.hit);
-				
-				datum.realDistance = distance(datum.start, datum.hit); // use real distance here.
-				datum.projectedHitOffsetX = distance(q, datum.target) * sign(q.t - 1);
-				datum.projectedHitOffsetY = y;
-				
-				groups[groupID].push(datum);
-			}
-
-			var newData = [];
-			for (var group in groups) {
-				if (groups[group].length < 3) { // exlcude groups with length < 3
-					continue;
-				}
-					
-				var xEffective = 4.133 * Math.sqrt(variance(groups[group], function(d) { return d.projectedHitOffsetX; }))
-				var yEffective = 4.133 * Math.sqrt(variance(groups[group], function(d) { return d.projectedHitOffsetY; }))
-				var dEffective = mean(groups[group], function(d) { return d.realDistance; });
-				
-				for (var i = 0; i < groups[group].length; i++) {
-					var datum = groups[group][i];
-					var We = Math.min(xEffective, yEffective); // SMALLER-OF model (MacKenzie, Buxton 92)
-					var De = dEffective;
-					datum.IDe = shannon(De, We);
-					datum.throughput = 1000 * (datum.IDe/datum.time);
-					newData.push(datum);
-				}
-			}
-			
-					
-					
-			// ==================== regression ========================
-			var covTIDe = cov(newData,
-				function(d) { return d.time; },
-				function(d) { return d.IDe});
-			
-			var varIDe = variance(newData, function(d) { return d.IDe; })
-			
-			if (varIDe > 0)
-				var b = covTIDe / varIDe;
-			else
-				var b = 0;
-			
-			var mT = mean(newData, function(d) { return d.time; });
-			var mIDe = mean(newData, function(d) { return d.IDe; });
-			var a = mT - b * mIDe;
-			
-			
-				
-		}		
+		that.active = false;		
 	}
 };
 
