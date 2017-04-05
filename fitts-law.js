@@ -576,7 +576,7 @@ $('button').click(function(){
 
 							var cell = {
 								t: 'n',
-								v: this.data[trial][j][k];
+								v: this.data[trial][j][k]
 							};
 
 							if (range.s.r > currentRow) {
