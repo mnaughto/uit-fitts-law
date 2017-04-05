@@ -78,7 +78,7 @@ var fittsTest = {
 	currentCount: 0,
 	miss: 0,
 	isoLimits: {minD: 120, maxD: 300, minW:10 , maxW: 100},
-	isoParams: {num: 24, distance: 200, width: 50, randomize: false},
+	isoParams: {num: 23, distance: 200, width: 50, randomize: false},
 	
 	currentPath: [],
 	active: false,
