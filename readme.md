@@ -5,7 +5,7 @@ Fitts' Law is one of the cornerstones of user interface research. Published in 1
 This interactive illustration of the Fitts test should serve as an introduction to Fitts' law. It can also help the viewer to visualise details not directly covered by it and provide further insights into motion in 2D target acquisition tasks.
 
 # Contributors
-This project is forked from the original project repository solely for purposes of UI simplification. Credit for implementation goes to the original project authors. See the repository at https://github.com/SimonWallner/uit-fitts-law.
+This project is forked from the original project repository solely for purposes of UI simplification and creation of specific trials. Credit for implementation goes to the original project authors. See the repository at https://github.com/SimonWallner/uit-fitts-law.
 
 # License
 This project is licensed under the MIT license; used libraries might have their own licenses.
