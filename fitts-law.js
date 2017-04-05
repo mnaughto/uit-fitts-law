@@ -480,6 +480,7 @@ var testAreaSVG = d3.select('#test-area').append('svg')
 fittsTest.startTrials();
 
 $('button').click(function(){
+	var xlsx = window.XLSX;
 	var Workbook = function () {
 						if (!(this instanceof Workbook)) {
 							return new xlsx.Workbook();
@@ -620,7 +621,7 @@ $('button').click(function(){
 						type: 'binary'
 					});
 
-					FileSaver.saveAs(new Blob([s2ab(wbout)], {
+					saveAs(new Blob([s2ab(wbout)], {
 						type: 'application/octet-stream'
 					}), 'ExperimentData.xlsx');
 });
