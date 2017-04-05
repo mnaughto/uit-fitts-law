@@ -16,53 +16,11 @@
 	</head>
 	<body>
 		<!-- fork me on github -->
-		<a href="https://github.com/SimonWallner/uit-fitts-law"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+		<a href="https://github.com/mnaughto/uit-fitts-law"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
 
 		<div class="container_12">
-			<h1 class="prefix_1 grid_9">An Interactive Visualisation of <strong>Fitts's Law</strong> with JavaScript and <strong>D3</strong></h1>
-			<div class="prefix_1 grid_7">
-				<p>
-					Fitts's Law is one of the cornerstones of user interface research. In 1954, Fitts described the relationship between the target distance, width, and time needed for a target acquisition task. This later became known as <strong>Fitts's law</strong> [Fitts 1954].
-				</p>
-				<p>
-					This interactive illustration of Fitts's test should serve as an introduction to Fitts' law.  It can also help the reader to visualise details not directly covered by the law and give further insights into motion in 2D target acquisition tasks.
-				</p>
-				<p class="note">
-					We recomend a modern browser and fast computer to run the interactive tests. We developed on Safari and Chrome, so support for other modern browsers is likely but not guaranteed.
-				</p>
-
-				<h2>Fitts's Law</h2>
-				<p>
-					For a given target acquisition task, e.g. move the mouse to a certain point in the UI of an application and select it, Fitts's law desribes how the distance from start point to the target and the width of the target influence the index of difficulty (ID) of the task.
-				</p>
-				<p>
-					The law (in the Shannon formulation [MacKenzie and Buxton 1992]) states that
-				<div class="math">
-					<img src="shannon.png" style="width: 160px" alt="Shannon Formulation of the Fitts's law" />
-				</div>
-					where <strong>A</strong> is the task's amplitude or distance, <strong>W</strong> is the target's width, and the resulting <strong>ID</strong> is the aforementioned <strong>Index of Difficulty</strong>.
-				</p>
-				<p>
-					From this formula we can see that the task gets harder, the farther away the target is and the smaller it is. This fits well with the common perception of such tasks. As it turns out, the time it takes to perform such a task is linearly correlated with its ID.
-				</p>
-
-				<h2>The Test</h2>
-				<p>
-					Below you can find an interactive Fitts's test. The test is laid out according to the recommendations found in [Soukoreff and Mackenzie 2004]. It should also follow the ISO standard [ISO 9241-9] which unfortunately was unavailable to us at the time of writing.
-				</p>
-				<p>
-					The test setup allows for multiple data sets to be created (e.g. to compare different input devices or parameters) and the test parameters (<strong>distance</strong> and <strong>width</strong>) can be adjusted. If parameters are set randomly, they will update after each test round, to allow for the continuous insertion of test data for different conditions.
-				</p>
-				<p>
-					Below you can see the test area. Beneath it you can find various plots that update in real time while data is entered. Data is accumulated in the live plots as long as the test parameters remain unchanged.
-
-				<h2>A word of Warning</h2>
-				<p>
-				This test setup is merely for educative and illustrative purposes. This is <strong>not</strong> a controlled experiment, and no definitive truths should be derived from it. It can, however, help in exploring different settings and be a usefull tool for constructing real Fitts's experiments.
-				</p>
-
-			</div>
+			<h1 class="prefix_1 grid_9"><strong>Fitts's Law</strong> with JavaScript and <strong>D3</strong></h1>
 
 			<div class="clear"></div>
 
@@ -73,10 +31,6 @@
 				</p>
 			</div>
 			<div class="grid_4 border sans" style="height: 378px; padding: 10px; width: 278px">
-				<p>
-					<button id="randomizeButton" type="button">Randomize!</button>
-					<input type="checkbox" id="randomizeCheckbox" checked /> randomize after round
-				</p>
 				<p>
 					Distance: <span id="sliderDistanceValue"></span>
 					<div id="sliderDistance"></div>
@@ -98,7 +52,7 @@
 			<div class="grid_3">
 				 <div id="plot-positions" class="sans"></div>
 				<p class="caption">
-					fig. 1b: Deviation form straight path over path distance in px.
+					fig. 1b: Deviation from straight path over path distance in px.
 				</p>
 			</div>
 
@@ -170,7 +124,7 @@
 				<div class="grid_7 prefix_1">
 					<div id="positionEffective" class="sans"></div>
 					<p class="caption">
-						fig. 4: Deviation form straight path over path distance in px.
+						fig. 4: Deviation from straight path over path distance in px.
 					</p>
 
 					<div id="speedEffective" class="sans"></div>
@@ -204,14 +158,9 @@
 					<strong>Bootsma, R. J., Fernandez, L., & Mottet, D. (2004)</strong>. Behind Fitts's law: kinematic patterns in goal-directed movements. International Journal of Human-Computer Studies, 61(6), 811-821. doi:10.1016/j.ijhcs.2004.09.004
 					</p>
 
-				<h2>Feedback</h2>
-				<p>
-					There is quite some room for improvement and we'd love to hear your feedback and comments. You can address them to Simon via <a href="mailto:me@simonwallner.at">email</a>.
-				</p>
-
 				<h2>Acknowledgements</h2>
 				<p>
-					This interactive experiment was created as part of an assignment for the <strong>User Interface Technologies</strong> course at the <strong>University of Copenhagen</strong> in spring 2012. Group Members: Simon Wallner, Otilia Danet, Trine Eilersen, and Jesper Tved.
+					This interactive experiment is a fork of an existing Fitts law evaluation implementation located at <a href="http://simonwallner.at/ext/fitts/">http://simonwallner.at/ext/fitts/</a>
 				</p>
 				<h2>License</h2>
 				<p>
