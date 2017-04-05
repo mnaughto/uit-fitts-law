@@ -569,7 +569,7 @@ $('button').click(function(){
 		
 		for(var j = 0; j < this.data[trial].length; j++){
 			for(var k = 0; k < fields.length; k++){
-				var cellRef = xlsx.utils.encode_cell({
+							var cellRef = xlsx.utils.encode_cell({
 								c: currentColumn,
 								r: currentRow
 							});
@@ -597,20 +597,21 @@ $('button').click(function(){
 
 							ws[cellRef] = cell;
 							currentColumn++;
-						});
 
-						currentRow++;
-						currentColumn = 0;
+						
 			}
+		currentRow++;
+						currentColumn = 0;
 		
-			if (range.s.c < 10000000) {
+			
+		}
+		if (range.s.c < 10000000) {
 						ws['!ref'] = xlsx.utils.encode_range(range);
 					}
 
 					/* add worksheet to workbook */
 					wb.SheetNames.push('Trial ' + (trial + 1));
 					wb.Sheets['Trial ' + (trial + 1)] = ws;
-		}
 	}
 		  
 		  var wbout = xlsx.write(wb, {
