@@ -113,6 +113,8 @@ var fittsTest = {
 	nextTrial: function(){
 		if(this.dataCnt < trials.length){
 			var trialParams = trials[this.dataCnt];
+			
+			this.currentCount = 0;
 		
 			this.isoParams.distance = trialParams.a;
 			this.isoParams.width = trialParams.w;
@@ -216,19 +218,15 @@ var fittsTest = {
 							   path: this.currentPath,
 							   hit: {x: x, y: y, t: (new Date).getTime()}});
 			this.removeTarget();
-
-			if (this.isoParams.randomize && this.currentCount >= this.isoPositions.length) {
-				this.randomizeParams();
+			
+			if(this.currentCount >= 15){
 				this.currentCount = 0;
 				this.currentPosition = 0;
 				this.miss = 0;
-				this.updateISOCircles;
-				this.generateTarget();
-				this.active = false;
-			}
-			else {
+				this.nextTrial();
+			} else {
 				this.currentCount++;
-				this.generateTarget();			
+				this.generateTarget();
 			}
 
 			
