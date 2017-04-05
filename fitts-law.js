@@ -24,7 +24,7 @@ function makeDimension(width, height, top, right, bottom, left) {
 }
 
 // set up dimensions for the plotting.
-var testDimension = makeDimension(620, 400, 30, 30, 30, 30);
+var testDimension = makeDimension(800, 600, 30, 30, 30, 30);
 
 var LIVE_STAY = 1000;
 var MAX_TIME = 2000;
@@ -43,27 +43,27 @@ function v(v) {
 var trials = [
 	{
 		w: 30,
-		a: 250
+		a: 350
 	},
 	{
 		w: 30,
-		a: 300
+		a: 400
 	},
 	{
 		w: 30,
+		a: 450
+	},
+	{
+		w: 55,
 		a: 350
 	},
 	{
 		w: 55,
-		a: 250
+		a: 400
 	},
 	{
 		w: 55,
-		a: 300
-	},
-	{
-		w: 55,
-		a: 350
+		a: 450
 	},
 ];
 
@@ -97,7 +97,7 @@ var fittsTest = {
 	startTrials: function(){
 		this.data = [];
 		this.currentDataSet = 0;
-		this.dataCnt = 0;
+		this.dataCnt = -1;
 		this.sumID = 0;
 		this.sumTime = 0;
 		this.miss = 0;
@@ -298,13 +298,12 @@ var fittsTest = {
 	},
 	
 	addDataSet: function() {
-		this.dataCnt++;
-		var num = this.dataCnt;
 		var colour = this.colour(randomAB(0, 10));
 		
-		this.data[num] = {data: [], colour: colour};
+		this.data.push({data:[], colour: colour});
+		this.dataCnt = this.data.length;
 		
-		this.currentDataSet = num
+		this.currentDataSet = this.data.length - 1;
 	},
 	
 	updatePlots: function(that) {
