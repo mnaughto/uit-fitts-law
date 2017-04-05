@@ -97,7 +97,7 @@ var fittsTest = {
 	startTrials: function(){
 		this.data = [];
 		this.currentDataSet = 0;
-		this.dataCnt = -1;
+		this.dataCnt = 0;
 		this.sumID = 0;
 		this.sumTime = 0;
 		this.miss = 0;
